@@ -28,6 +28,7 @@
       "description": "主打微信小程序的 AI 界面代码生成工具：上传设计稿图片或用 AI 生成界面图，自动生成原生 WXML/WXSS/JS 小程序代码，可直接导入微信开发者工具；亦可导出网页与 React Native 代码。内置可视化骨架编辑器，支持布局调整、AI 定点重设计、代码直接写回本地工程目录。",
       "featureList": [
         "设计稿图片转微信小程序代码（原生 WXML/WXSS/JS）",
+        "读取现有工程代码，反向生成设计稿（老项目改版）",
         "AI 文字生成界面图（内置生图管线）",
         "可视化骨架编辑器（25 类骨架识别、布局排列引擎）",
         "AI 定点重设计（选中哪块只重设计哪块）",
@@ -61,6 +62,7 @@
         { "@type": "Question", "name": "即视UI 是什么？", "acceptedAnswer": { "@type": "Answer", "text": "即视UI 是一款主打微信小程序的 AI 界面代码生成工具（D2C，Design to Code）。上传设计稿图片，或直接用内置 AI 用文字生成界面图，即可自动生成原生 WXML/WXSS/JS 小程序代码；亦可导出网页与 React Native 代码。由北京汐小满科技有限公司开发，官网 www.xxm521.com。" } },
         { "@type": "Question", "name": "即视UI 生成的小程序代码是什么格式？", "acceptedAnswer": { "@type": "Answer", "text": "原生微信小程序代码：WXML 页面结构、WXSS 样式、JS 逻辑与数据绑定、app.json 配置和图片资产一次生成，可直接导入微信开发者工具运行。" } },
         { "@type": "Question", "name": "没有设计稿可以使用即视UI吗？", "acceptedAnswer": { "@type": "Answer", "text": "可以。即视UI 内置 AI 生图能力，用文字描述界面即可生成界面设计图，再从设计图生成小程序代码。也支持上传自己画的设计稿或截图。" } },
+        { "@type": "Question", "name": "已有项目没有设计稿，能帮我改版吗？", "acceptedAnswer": { "@type": "Answer", "text": "可以。LLM 直接读取现有页面代码，反向生成设计稿并支持 A/B 对比，挑中哪版融合回代码，其余逻辑逐字保留，适合祖传项目改版。" } },
         { "@type": "Question", "name": "生成的代码质量如何，能直接用吗？", "acceptedAnswer": { "@type": "Answer", "text": "生成的代码经过编译校验与结构守卫（类名命中自洽检查、异常特征绊线），避免静默坏代码；布局由排列引擎输出符合开发规范的 flex 结构。复杂页面仍建议在编辑器中微调后落盘。" } },
         { "@type": "Question", "name": "生成的代码如何交付到我的项目里？", "acceptedAnswer": { "@type": "Answer", "text": "通过浏览器 File System Access API 授权本地工程目录后，生成的代码可以直接写回你的项目文件夹，无需手动复制粘贴。" } },
         { "@type": "Question", "name": "即视UI 如何收费？", "acceptedAnswer": { "@type": "Answer", "text": "提供三档：9.9 元体验档（终身 5 次，通过邀请等方式最高可攒至 10 次）；50 元月卡（每月 200 次）；399 元永久档（终身使用）。价格以应用内实际展示为准。" } }
@@ -195,14 +197,14 @@ footer a:hover{color:var(--acc2)}
   <div class="wrap">
     <span class="tag">设计稿转代码 · 微信小程序优先 · D2C</span>
     <h1>把界面图变成<em>能直接用的小程序代码</em></h1>
-    <p class="lead">上传设计稿图片，或直接用 AI 用文字生成界面图，即视UI 自动输出原生微信小程序代码（WXML / WXSS / JS），可直接导入微信开发者工具。生成后可在可视化骨架编辑器里调整结构、定点重设计，最终代码直接写回你的本地工程目录。</p>
+    <p class="lead">上传设计稿图片，或直接用 AI 用文字生成界面图，即视UI 自动输出原生微信小程序代码（WXML / WXSS / JS），可直接导入微信开发者工具。已有项目？LLM 直接读取现有代码反向生成设计稿，挑一版融合回代码。生成后可在可视化骨架编辑器里调整结构、定点重设计，最终代码直接写回你的本地工程目录。</p>
     <div class="ctas">
       <a class="btn" href="https://www.xxm521.com/">免费开始使用</a>
       <a class="btn ghost" href="#how">看看它怎么工作</a>
     </div>
     <div class="facts">
       <div><b>原生小程序</b><span>WXML / WXSS / JS 全套输出</span></div>
-      <div><b>25 类</b><span>骨架结构自动识别</span></div>
+      <div><b>双向转换</b><span>设计稿转代码，代码也出设计稿</span></div>
       <div><b>可视化编辑</b><span>画布调整实时同步代码</span></div>
       <div><b>0 复制粘贴</b><span>代码直写本地工程</span></div>
     </div>
@@ -251,11 +253,11 @@ footer a:hover{color:var(--acc2)}
     <p class="sub">即视UI 的重点不是生成那一刻的惊艳，而是生成之后不需要大改。</p>
     <div class="grid2">
       <div class="feat"><span class="dot"></span><div><h3>AI 生成界面图</h3><p>没有设计稿也能开工：文字描述界面，生图管线产出带质感的界面图，直接进入小程序代码生成。</p></div></div>
+      <div class="feat"><span class="dot"></span><div><h3>读你的代码，反向出设计稿</h3><p>祖传项目没有设计稿？LLM 直接读取现有页面代码生成设计稿，挑一版融合回代码，老项目改版利器。</p></div></div>
       <div class="feat"><span class="dot"></span><div><h3>可视化骨架编辑器</h3><p>25 类骨架结构识别，画布上拖拽、排齐、等分、拆分容器；改动实时同步到代码。</p></div></div>
       <div class="feat"><span class="dot"></span><div><h3>AI 定点重设计</h3><p>选中页面里的任意一块，AI 只重设计这一块，其余部分逐字保留——改版不伤全身。</p></div></div>
       <div class="feat"><span class="dot"></span><div><h3>代码写回本地工程</h3><p>基于浏览器 File System Access API 授权目录，代码与图片资产直接落盘，告别复制粘贴。</p></div></div>
-      <div class="feat"><span class="dot"></span><div><h3>多页面批量生成</h3><p>多张设计稿一次跑完，整站页面风格统一。</p></div></div>
-      <div class="feat"><span class="dot"></span><div><h3>A / B 版本对比</h3><p>同一需求生成两个版本，按版本缓存秒级切换，择优落盘。</p></div></div>
+      <div class="feat"><span class="dot"></span><div><h3>A / B 版本对比 · 多页批量</h3><p>同一需求生成两个版本秒级切换择优落盘；多张设计稿一次跑完，整站风格统一。</p></div></div>
     </div>
   </div>
 </section>
@@ -308,6 +310,7 @@ footer a:hover{color:var(--acc2)}
       <div class="fq"><h3>即视UI 是什么？</h3><p>即视UI 是一款主打微信小程序的 AI 界面代码生成工具（D2C，Design to Code）：上传设计稿图片或用 AI 生成界面图，自动生成原生小程序代码，亦可导出网页与 React Native。由北京汐小满科技有限公司开发。</p></div>
       <div class="fq"><h3>生成的小程序代码是什么格式？</h3><p>原生微信小程序代码：WXML 页面结构、WXSS 样式、JS 逻辑与数据绑定、app.json 配置和图片资产一次生成，可直接导入微信开发者工具运行，不绑定私有框架。</p></div>
       <div class="fq"><h3>没有设计稿可以使用即视UI吗？</h3><p>可以。内置 AI 生图能力，用文字描述界面即可生成界面图，再从界面图生成小程序代码。也支持上传自己画的设计稿或产品截图。</p></div>
+      <div class="fq"><h3>已有项目没有设计稿，能帮我改版吗？</h3><p>可以，这正是即视UI 的独特能力：LLM 直接读取你现有页面代码，反向生成设计稿（支持 A/B 两版对比），挑中哪版就融合回你的代码，其余逻辑逐字保留——祖传项目改版不用再补画设计稿。</p></div>
       <div class="fq"><h3>生成的代码能直接用吗？</h3><p>生成的代码会先经过编译校验、结构守卫与类名自洽检查再落地，避免静默坏代码；布局由排列引擎输出符合开发规范的 flex 结构。复杂页面建议在编辑器里微调后落盘。</p></div>
       <div class="fq"><h3>代码如何交付到我的项目？</h3><p>通过浏览器 File System Access API 授权本地工程目录，生成的代码与图片资产直接写回项目文件夹，支持增量更新。</p></div>
       <div class="fq"><h3>即视UI 如何收费？</h3><p>三档：¥9.9 体验档（终身 5 次，最高可攒至 10 次）、¥50 月卡（每月 200 次）、¥399 永久档。价格以应用内实际展示为准。</p></div>
