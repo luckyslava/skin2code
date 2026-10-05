@@ -4,7 +4,7 @@
 
 **[官网 / 在线使用](https://www.xxm521.com/)** · [产品介绍](https://www.xxm521.com/about/) · [常见问题](docs/faq.md) · [反馈与建议](../../issues)
 
-即视UI（Jishi UI）是由[北京汐小满科技有限公司](https://www.xxm521.com/)开发的 AI 界面代码生成工具（D2C，Design to Code），主战场是**微信小程序**：把设计稿图片（或 AI 生成的界面图）变成敢直接用的小程序原生代码；同一编辑结果亦可导出网页与 React Native。
+即视UI（skin2code）是由[北京汐小满科技有限公司](https://www.xxm521.com/)开发的 AI 界面代码生成工具（D2C，Design to Code），主战场是**微信小程序**：把设计稿图片（或 AI 生成的界面图）变成敢直接用的小程序原生代码；同一编辑结果亦可导出网页与 React Native。
 
 ## 它解决什么问题
 
@@ -58,7 +58,7 @@
 
 ## English
 
-**Jishi UI** ("即视UI") is an AI-powered design-to-code tool focused on **WeChat Mini Programs**, built by Beijing Xiaoxiaoman Technology. Upload a design mockup (or generate a UI image from a text prompt with the built-in AI) and get production-ready native WXML/WXSS/JS code — with a visual skeleton editor for layout adjustments, block-level AI redesign, and code written directly back into your local project directory. HTML/CSS/JS and React Native exports are also available. Try it at [www.xxm521.com](https://www.xxm521.com/).
+**skin2code** ("即视UI", Jishi UI) is an AI-powered design-to-code tool focused on **WeChat Mini Programs**, built by Beijing Xiaoxiaoman Technology. Upload a design mockup (or generate a UI image from a text prompt with the built-in AI) and get production-ready native WXML/WXSS/JS code — with a visual skeleton editor for layout adjustments, block-level AI redesign, and code written directly back into your local project directory. HTML/CSS/JS and React Native exports are also available. Try it at [www.xxm521.com](https://www.xxm521.com/).
 
 ## 关于本仓库
 
